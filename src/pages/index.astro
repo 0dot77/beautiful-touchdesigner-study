@@ -1,29 +1,57 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import "@fontsource/inconsolata";
 ---
 
-<Layout title="BTS">
+<Layout title="Beautiful Touchdesigner Study">
   <main>
-    <h1 class="text-gradient">Beautiful Touchdesigner Study</h1>
+    <nav>
+      <a href="/about">About</a>
+      <a href="/archieve">Study Archive</a>
+    </nav>
+    <h1>Beautiful <span>Touchdesigner</span> Study</h1>
   </main>
 </Layout>
 
 <style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
+  @media only screen and (max-width: 600px) {
+    main {
+      margin: auto;
+      padding: 1rem;
+      max-width: 60ch;
+      height: 100vh;
+      background-image: url("/assets/imgs/main.png");
+      background-position: center;
+
+      font-family: "Inconsolata", monospace;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* nav */
+    nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 1.8em;
+    }
+
+    nav a {
+      margin-bottom: 0.25rem;
+      text-decoration: none;
+      color: var(--main);
+    }
+
+    /* title */
+    h1 {
+      text-align: right;
+      font-size: 1.8em;
+      width: 100%;
+      margin: 0;
+      color: var(--main);
+      cursor: default;
+    }
   }
 </style>
