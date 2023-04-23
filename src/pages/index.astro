@@ -7,22 +7,57 @@ import "@fontsource/inconsolata";
   <main>
     <nav>
       <a href="/about">About</a>
-      <a href="/archieve">Study Archive</a>
+      <a href="/archive">Study Archive</a>
     </nav>
-    <h1>Beautiful <span>Touchdesigner</span> Study</h1>
+    <!-- For desktop -->
+    <div class="desktop-container">
+      <div class="desktop-container__divider">
+        <span class="bts">B</span>
+        <span class="bts">T</span>
+        <span class="bts">S</span>
+      </div>
+      <div class="desktop-container__img-container">
+        <img src="/assets/imgs/main.png" />
+      </div>
+    </div>
+    <div id="ball" class="desktop-icon__ball">
+
+    </div>
+    <h1>Beautiful Touchdesigner Study</h1>
   </main>
 </Layout>
 
+<script>
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+  const ball = document.getElementById('ball');
+  document.addEventListener("click", (ev) =>{
+    ball.style.transform = `translateY(${ev.clientY - 25}px)`;
+    ball.style.transform += `translateX(${ev.clientX - 25}px)`;
+  },
+  false);
+</script>
+
 <style>
+  /* mobile */
   @media only screen and (max-width: 600px) {
+
+    /* need to hidden for desktop mode */
+    .desktop-container {
+      display: none;
+    }
+    .desktop-icon__ball {
+      display: none;
+    }
     main {
       margin: auto;
       padding: 1rem;
       max-width: 60ch;
       height: 100vh;
+      height:calc(var(--vh, 1vh)) * 100);
       background-image: url("/assets/imgs/main.png");
       background-position: center;
-
       font-family: "Inconsolata", monospace;
       font-weight: bold;
       display: flex;
@@ -35,7 +70,7 @@ import "@fontsource/inconsolata";
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      font-size: 1.8em;
+      font-size: 1.5em;
     }
 
     nav a {
@@ -47,11 +82,115 @@ import "@fontsource/inconsolata";
     /* title */
     h1 {
       text-align: right;
-      font-size: 1.8em;
+      font-size: 1.5em;
       width: 100%;
       margin: 0;
       color: var(--main);
       cursor: default;
+    }
+  }
+
+  /* desktop */
+  @media only screen and (min-width: 600px) {
+    
+    
+    main {
+      margin: auto;
+      padding: 1rem;
+      max-width: 100%;
+      height: 100vh;
+      background-color: black;
+      font-family: "Inconsolata", monospace;
+      font-weight: bold;
+      display: grid;
+      grid-template-rows: 10% 85% 5%;
+    }
+
+    /* nav */
+    nav {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.5em;
+      grid-row: 1/2;
+      height: 100%;
+    }
+    nav a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      text-decoration: none;
+      color: var(--main);
+      border: 1px dotted var(--main);
+      padding-left: var(--desktop-text-padding);
+    }
+
+    /* img container */
+    .desktop-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      grid-row: 2/3;
+      border-right: 1px dotted var(--main);
+    }
+    .desktop-container__divider {
+      width: 30%;
+      border-left: 1px dotted var(--main);
+      border-right: 1px dotted var(--main);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: cener;
+    }
+    .desktop-container__divider .bts {
+      width:100%;
+      text-align: center;
+      cursor: default;
+      font-size: 10rem;
+      font-weight: 100;
+      font-family: "Inconsolata", monospace;
+    }
+
+    .desktop-container__divider:hover {
+      transition: background-color 1s ease-in-out reverse;
+      background-color: var(--main);
+    }
+
+    .desktop-container__img-container {
+      width:100%;
+      display: flex;
+      justify-content: center;
+    }
+    .desktop-container img {
+      object-fit: contain;
+      width: 80%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+  .desktop-icon__ball {
+  border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  background-image: url('/assets/imgs/ball.png');
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 1s;
+  background-position: center;
+  background-size: cover;
+  }
+    /* title */
+    h1 {
+      display: flex;
+      align-items: center;
+      font-size: 1.5em;
+      width: 100%;
+      height: 100%;
+      color: var(--main);
+      cursor: default;
+      border: 1px dotted var(--main);
+      grid-row: 3/4;
+      padding-left: var(--desktop-text-padding);
     }
   }
 </style>
